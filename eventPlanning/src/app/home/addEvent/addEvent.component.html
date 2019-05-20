@@ -1,0 +1,52 @@
+<div class="formAdd">
+<form [formGroup]="formData" (ngSubmit)="addEvent()">
+    <h2 style="text-align:center">Новое мероприятие</h2>
+    <hr>
+
+    <div class="form-group">
+        <input type="text" class="form-control" id="nameEvent" formControlName="nameEvent" placeholder="Название мероприятия" [ngClass]="{ 'is-invalid': submitted && f.nameEvent.errors }"/>
+        <div *ngIf="submitted && f.nameEvent.errors" class="invalid-feedback">
+                <div *ngIf="f.nameEvent.errors.required">Заполните поле!</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="adress" formControlName="adress" placeholder="Адресс" [ngClass]="{ 'is-invalid': submitted && f.adress.errors }"/>
+        <div *ngIf="submitted && f.adress.errors" class="invalid-feedback">
+                <div *ngIf="f.adress.errors.required">Заполните поле!</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="theme" formControlName="theme" placeholder="Тема мероприятия" [ngClass]="{ 'is-invalid': submitted && f.theme.errors }"/>
+        <div *ngIf="submitted && f.theme.errors" class="invalid-feedback">
+                <div *ngIf="f.theme.errors.required">Заполните поле!</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control"  id="date" bsDatepicker  placement="right" formControlName="date" placeholder="Дата проведения" [ngClass]="{ 'is-invalid': submitted && f.date.errors }"/>
+        <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                <div *ngIf="f.date.errors.required">Заполните поле!</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="time">Время проведения мероприятия: </label>
+        <timepicker class="col-sm-8" id="time" formControlName="time"  [showMeridian]="false" [ngClass]="{ 'is-invalid': submitted && f.time.errors }"></timepicker>
+        <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                <div *ngIf="f.time.errors.required">Заполните поле!</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="number" class="form-control" id="count" formControlName="count" placeholder=" Допустимое количество участников" [ngClass]="{ 'is-invalid': submitted && f.count.errors }"/>
+        <div *ngIf="submitted && f.count.errors" class="invalid-feedback">
+                <div *ngIf="f.count.errors.required">Заполните поле!</div>
+                <div *ngIf="f.count.errors.min">Минимальное количество участинов  - 2!</div>
+                <div *ngIf="f.count.errors.isDouble">Допускаются только целые числа!</div>
+        </div>
+    </div>
+    <div class="forn-group"  style="display: flex;justify-content: space-around;">
+        <button type="submit" mat-raised-button color="primary" >Сохранить</button>
+        <button type="button" class="btn btn-info" routerLink='/home/listEvent'>Отмена</button>        
+    </div>
+</form>
+<br/>
+<br/> 
+</div>
