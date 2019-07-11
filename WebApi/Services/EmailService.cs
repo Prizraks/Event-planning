@@ -10,7 +10,7 @@ namespace WebApi.Services
         {
             var emailMessage = new MimeMessage();
  
-            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "ivanbrenov1991@gmail.com"));
+            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "email"));//заменить email на свой эл.ящик
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -22,7 +22,7 @@ namespace WebApi.Services
             {   
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                 await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("ivanbrenov1991@gmail.com", "C9fO0eZzQ46");
+                await client.AuthenticateAsync("email", "password");//заменить email на свой эл.ящик  и password нпа свой пароль
                 await client.SendAsync(emailMessage);                
  
                 await client.DisconnectAsync(true);
